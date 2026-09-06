@@ -3,7 +3,7 @@ const PRODUCTS = [
   { name:"KEMO-P",          form:"TAB",  hsn:"30041030", batch:"ZPT-229A/26",  exp:"04/28", rate:48.00 },
   { name:"DF-SPAS",         form:"TAB",  hsn:"30041030", batch:"ZPT-151A/26",  exp:"04/28", rate:58.00 },
   { name:"YEPEZOLE-DSR",    form:"CAPS", hsn:"30049099", batch:"MC-042608 E2", exp:"03/28", rate:123.00 },
-  { name:"YEPEZOLE-40",     form:"INJ",  hsn:"30049039", batch:"GD26D-001B",   exp:"01/27", rate:12.00 },
+  { name:"YEPEZOLE-40",     form:"INJ",  hsn:"30049039", batch:"GD26D-001B",   exp:"10/27", rate:12.00 },
   { name:"QYMOCEF 500mg",   form:"INJ",  hsn:"30042019", batch:"CD26D-002A",   exp:"04/28", rate:16.50 },
   { name:"QYMOCEF 1GM",     form:"INJ",  hsn:"30042019", batch:"CD26D-002B",   exp:"04/28", rate:18.50 },
   { name:"CEZYME 200ML",    form:"SYR",  hsn:"2106",     batch:"ZBL-050",      exp:"04/28", rate:26.00 },
