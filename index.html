@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Auranice — Billing System</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <div class="toolbar no-print">
+    <div class="toolbar-title">
+      <img id="logoTop" src="logo.png" alt="Auranice logo" />
+      <div>
+        <h1>Auranice Billing System</h1>
+        <span>Fill buyer &amp; product details below, then print or save as PDF</span>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-green" id="btnAddRow" type="button">+ Add Product Row</button>
+      <button class="btn-primary" id="btnPrint" type="button">🖨 Print / Save as PDF</button>
+      <button class="btn-ghost-danger" id="btnReset" type="button">Reset Invoice</button>
+    </div>
+  </div>
+
+  <div class="invoice-paper" id="invoicePaper">
+
+    <div class="seller-block">
+      <div class="brandrow">
+        <img class="logo" src="logo.png" alt="logo" />
+        <h2>AURANICE</h2>
+      </div>
+      <div class="addr">
+        SHOP NO. 1, SECOND FLOOR, PLOT NO. 1, KHASRA NO. 446, MAIN ROAD, DAYALPUR, KARAWAL NAGAR,
+        DISTRICT-NORTH EAST DELHI, DELHI-110094<br/>
+        <b>DL No:</b> WLF20B2026DL000411, WLF21B2026DL000404 &nbsp;|&nbsp; <b>GSTIN:</b> 07DOLPS9858J1ZT<br/>
+        <b>PH:</b> 9996442738 / 9999442738 &nbsp;|&nbsp; <b>State:</b> Delhi (Code: 07)
+      </div>
+    </div>
+
+    <div class="tax-invoice-bar">TAX INVOICE</div>
+
+    <div class="meta-grid">
+      <div class="meta-cell">
+        <span class="meta-label">BUYER (BILL TO):</span>
+        <input class="field wide buyer-name" id="buyerName" type="text" value="BASANT MEDICAL STORE" />
+        <textarea class="field" id="buyerAddress" rows="2">MAIN MARKET SAKEET, ETAH, U.P.</textarea>
+        <div>
+          <b>DL No:</b> <input class="field" id="buyerDL" style="width:200px" type="text" value="20B-51N/2011, 21R-52N/2011" />
+        </div>
+        <div>
+          <b>PAN:</b> <input class="field" id="buyerPAN" style="width:110px" type="text" value="EVXPK2004J" />
+        </div>
+        <div>
+          <b>State:</b> <input class="field" id="buyerState" style="width:110px" type="text" value="Uttar Pradesh" />
+          (Code: <input class="field" id="buyerStateCode" style="width:26px" type="text" value="09" />)
+        </div>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">INVOICE DETAILS:</span>
+        <div><b>Invoice No:</b> <input class="field inv-input" id="invoiceNo" type="text" value="AP/26-27/001" /></div>
+        <div><b>Date:</b> <input class="field inv-input" id="invoiceDate" type="date" /></div>
+        <div><b>Place of Supply:</b> <input class="field" id="placeOfSupply" style="width:140px" type="text" value="Uttar Pradesh" /> (<input class="field" id="placeOfSupplyCode" style="width:26px" type="text" value="09" />)</div>
+        <div>
+          <b>Supply Type:</b>
+          <select class="tax-mode" id="supplyType">
+            <option value="igst" selected>Inter-State (IGST)</option>
+            <option value="cgst">Intra-State (CGST + SGST)</option>
+          </select>
+        </div>
+        <div style="margin-top:4px;">
+          <b>GST Rate:</b> <input class="tax-rate-input" id="taxRate" type="number" min="0" max="100" step="0.1" value="5" />%
+        </div>
+      </div>
+    </div>
+
+    <table class="items mode-igst" id="itemsTable">
+      <thead>
+        <tr>
+          <th style="width:5%;">#</th>
+          <th style="width:16%;">PRODUCT NAME</th>
+          <th style="width:7%;">FORM</th>
+          <th style="width:9%;">HSN</th>
+          <th style="width:11%;">BATCH</th>
+          <th style="width:7%;">EXP</th>
+          <th style="width:7%;">QTY</th>
+          <th style="width:8%;">RATE (₹)</th>
+          <th style="width:11%;">TAXABLE (₹)</th>
+          <th class="col-igst" style="width:9%;">IGST</th>
+          <th class="col-cgst" style="width:9%;">CGST</th>
+          <th class="col-sgst" style="width:9%;">SGST</th>
+          <th class="col-action no-print" style="width:20px;"></th>
+        </tr>
+      </thead>
+      <tbody id="itemsBody">
+      </tbody>
+    </table>
+    <div class="add-row-bar no-print">
+      <button class="add-row-btn" id="btnAddRow2" type="button">+ Add new row</button>
+    </div>
+
+    <div class="totals-grid">
+      <div class="words-cell">
+        <span class="lbl">Amount in Words:</span>
+        <span class="value" id="amountWords">—</span>
+      </div>
+      <div class="totals-cell mode-igst" id="totalsCell">
+        <table>
+          <tr><td>Total Taxable Value:</td><td id="totalTaxable">₹ 0.00</td></tr>
+          <tr class="row-igst"><td id="igstLabel">Integrated Tax (IGST 5%):</td><td id="totalIGST">₹ 0.00</td></tr>
+          <tr class="row-cgst"><td id="cgstLabel">Central Tax (CGST 2.5%):</td><td id="totalCGST">₹ 0.00</td></tr>
+          <tr class="row-cgst"><td id="sgstLabel">State Tax (SGST 2.5%):</td><td id="totalSGST">₹ 0.00</td></tr>
+          <tr class="grand"><td>Grand Total (Incl. Tax):</td><td id="grandTotal">₹ 0.00</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="bottom-grid">
+      <div class="bottom-cell">
+        <span class="lbl">BANK DETAILS (CURRENT ACCOUNT)</span>
+        <b>Account Name:</b> AURANICE &nbsp; <b>Bank Name:</b> HDFC BANK<br/>
+        <b>A/C No.:</b> 50200105079522 &nbsp; <b>IFSC Code:</b> HDFC0000622<br/>
+        <b>UPI ID:</b> 9555513547@hdfc
+      </div>
+      <div class="bottom-cell">
+        <span class="lbl">TERMS &amp; CONDITIONS</span>
+        <ol>
+          <li>Payment requested by crossed cheque / demand draft payable at New Delhi.</li>
+          <li>Interest @ 18% p.a. would be charged on all A/C remaining unpaid after due date.</li>
+          <li>Our responsibility ceases as soon as consignment leaves our premises.</li>
+          <li>We hereby give warranty that goods supplied don't contravene in any way the provision of section 18 of Drug &amp; Cosmetics Act or the rules made thereunder.</li>
+          <li>Certified that the goods on which GST has been charged are not exempt under the act or rule made thereunder &amp; the amount charged on a/c of GST on these goods are not more than what is payable under the provision of the relevant act.</li>
+          <li>Subject to Delhi Jurisdiction only.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="sign-block">
+      <div class="left">Receiver's Stamp &amp; Signature</div>
+      <div class="right">
+        <span><b>For AURANICE</b></span>
+        <span>Authorised Signatory</span>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="hint no-print">Tip: click <b>Print / Save as PDF</b>, then in the print dialog choose destination "Save as PDF" and make sure <b>"Background graphics"</b> is turned on (under "More settings") so the navy header bars print in color.</p>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
