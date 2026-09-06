@@ -169,6 +169,10 @@ button:active{transform:translateY(1px);}
   background:#f3f8f2;
 }
 .field.wide{width:100%;}
+.w-xs{width:26px;}
+.w-md{width:110px;}
+.w-lg{width:140px;}
+.w-xl{width:200px;max-width:100%;}
 .buyer-name{
   font-weight:700;
   font-size:13px;
@@ -182,6 +186,7 @@ textarea.field{
 }
 
 /* ---------- Product table ---------- */
+.table-scroll{width:100%;}
 table.items{
   width:100%;
   border-collapse:collapse;
@@ -373,7 +378,31 @@ table.mode-cgst .col-igst{display:none;}
   .meta-cell + .meta-cell, .words-cell, .bottom-cell + .bottom-cell, .sign-block .right{
     border-left:none;border-top:1px solid var(--line);
   }
-  table.items{font-size:10px;}
+  body{padding:16px 8px 40px;}
+  .toolbar{justify-content:center;text-align:center;}
+  .btn-row{width:100%;}
+  .btn-row button{flex:1 1 auto;}
+  .table-scroll{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    border-bottom:1px solid var(--line);
+  }
+  table.items{
+    table-layout:auto;
+    min-width:640px;
+    font-size:11px;
+  }
+  table.items thead th, table.items tbody td{white-space:nowrap;}
+  table.items td.col-name{white-space:normal;min-width:110px;}
+  .w-xl{width:160px;}
+  .seller-block h2{font-size:21px;}
+  .seller-block .addr{font-size:10.5px;}
+}
+@media screen and (max-width: 420px){
+  .toolbar-title h1{font-size:14px;}
+  .toolbar-title span{font-size:10px;}
+  .meta-cell{padding:10px 12px;}
+  .words-cell, .bottom-cell{padding:10px 12px;}
 }
 
 /* =========================================================
