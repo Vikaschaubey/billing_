@@ -1,0 +1,472 @@
+:root{
+  --navy:#173a5e;
+  --navy-dark:#102a44;
+  --green:#2e7d32;
+  --green-dark:#1f5522;
+  --paper:#ffffff;
+  --bg:#eef2ec;
+  --ink:#1f2a24;
+  --muted:#5c6b63;
+  --line:#c7d2c9;
+  --line-soft:#e2e8e0;
+  --danger:#b3392c;
+  --danger-dark:#8f2d22;
+  font-variant-numeric: tabular-nums;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Segoe UI", "Inter", Arial, Helvetica, sans-serif;
+  padding:28px 16px 60px;
+}
+.app-shell{
+  max-width:1000px;
+  margin:0 auto;
+}
+/* ---------- Toolbar ---------- */
+.toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:16px;
+}
+.toolbar-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.toolbar-title img{height:34px;width:auto;}
+.toolbar-title h1{
+  font-size:16px;
+  margin:0;
+  letter-spacing:.2px;
+  color:var(--navy-dark);
+}
+.toolbar-title span{
+  display:block;
+  font-size:11px;
+  color:var(--muted);
+}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;}
+button{
+  font-family:inherit;
+  cursor:pointer;
+  border-radius:6px;
+  border:1px solid var(--line);
+  background:var(--paper);
+  color:var(--ink);
+  padding:9px 14px;
+  font-size:13px;
+  font-weight:600;
+  transition:background .15s, border-color .15s, transform .05s;
+}
+button:hover{border-color:var(--navy);}
+button:active{transform:translateY(1px);}
+.btn-primary{
+  background:var(--navy);
+  border-color:var(--navy);
+  color:#fff;
+}
+.btn-primary:hover{background:var(--navy-dark);border-color:var(--navy-dark);}
+.btn-green{
+  background:var(--green);
+  border-color:var(--green);
+  color:#fff;
+}
+.btn-green:hover{background:var(--green-dark);border-color:var(--green-dark);}
+.btn-ghost-danger{
+  color:var(--danger);
+  border-color:#e3c2bc;
+  background:#fdf4f2;
+}
+.btn-ghost-danger:hover{border-color:var(--danger);background:#fbe7e3;}
+
+/* ---------- Paper ---------- */
+.invoice-paper{
+  background:var(--paper);
+  border:1px solid var(--line);
+  box-shadow:0 2px 10px rgba(23,58,94,0.08);
+  padding:0;
+  overflow:hidden;
+  border-radius:2px;
+}
+
+.seller-block{
+  padding:8px 22px 10px;
+  text-align:center;
+  border-bottom:2px solid var(--navy);
+}
+.seller-block .brandrow{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+}
+.seller-block img.logo{height:52px;width:auto;margin-bottom:2px;}
+.seller-block h2{
+  margin:0;
+  font-size:24px;
+  letter-spacing:1px;
+  color:var(--navy-dark);
+  line-height:1.1;
+}
+.seller-block .addr{
+  font-size:11.5px;
+  color:var(--ink);
+  margin-top:6px;
+  line-height:1.5;
+}
+.seller-block .addr b{font-weight:700;}
+
+.tax-invoice-bar{
+  background:var(--navy);
+  color:#fff;
+  text-align:center;
+  font-weight:700;
+  letter-spacing:2px;
+  font-size:13px;
+  padding:6px 0;
+}
+
+.meta-grid{
+  display:grid;
+  grid-template-columns:1.15fr 1fr;
+  border-bottom:1px solid var(--line);
+}
+.meta-cell{
+  padding:12px 18px;
+  font-size:12px;
+  line-height:1.6;
+}
+.meta-cell + .meta-cell{border-left:1px solid var(--line);}
+.meta-label{
+  font-weight:700;
+  color:var(--navy-dark);
+  font-size:11.5px;
+  letter-spacing:.4px;
+  margin-bottom:4px;
+  display:block;
+}
+
+.field{
+  display:inline-block;
+  border:none;
+  border-bottom:1px dashed transparent;
+  background:transparent;
+  font:inherit;
+  color:inherit;
+  padding:1px 2px;
+  min-width:40px;
+}
+.field:focus{
+  outline:none;
+  border-bottom:1px dashed var(--green);
+  background:#f3f8f2;
+}
+.field.wide{width:100%;}
+.buyer-name{
+  font-weight:700;
+  font-size:13px;
+  text-transform:uppercase;
+}
+textarea.field{
+  resize:none;
+  width:100%;
+  font-family:inherit;
+  line-height:1.5;
+}
+
+/* ---------- Product table ---------- */
+table.items{
+  width:100%;
+  border-collapse:collapse;
+  font-size:11.5px;
+  table-layout:fixed;
+}
+table.items thead th{
+  background:var(--navy);
+  color:#fff;
+  font-size:10.6px;
+  letter-spacing:.3px;
+  padding:7px 6px;
+  text-align:center;
+  border-right:1px solid rgba(255,255,255,.18);
+  white-space:nowrap;
+}
+table.items thead th:last-child{border-right:none;}
+table.items tbody td{
+  padding:5px 6px;
+  text-align:center;
+  border-bottom:1px solid var(--line-soft);
+  border-right:1px solid var(--line-soft);
+  overflow:hidden;
+}
+table.items tbody tr:nth-child(even){background:#f7faf6;}
+table.items tbody td:last-child{border-right:none;}
+table.items td.col-name{text-align:left;}
+table.items td.col-taxable, table.items td.col-tax{font-weight:600;}
+
+select.field{
+  width:100%;
+  appearance:none;
+  -webkit-appearance:none;
+  background:transparent;
+  border:none;
+  font:inherit;
+  color:inherit;
+  padding:2px;
+  cursor:pointer;
+}
+select.field:focus{outline:none;background:#f3f8f2;}
+
+.print-only-text{display:none;}
+
+input.qty-input{
+  width:56px;
+  text-align:center;
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:3px 2px;
+  font:inherit;
+  background:#fffdf6;
+}
+input.qty-input:focus{outline:none;border-color:var(--green);background:#fff;}
+.row-del{
+  background:none;
+  border:none;
+  color:var(--danger);
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  padding:0 4px;
+  line-height:1;
+}
+.row-del:hover{color:var(--danger-dark);}
+.col-action{width:26px;}
+
+.add-row-bar{
+  padding:8px 10px;
+  text-align:left;
+  border-bottom:1px solid var(--line);
+  background:#fbfcfa;
+}
+.add-row-btn{
+  border:1px dashed #8fae8c;
+  color:var(--green-dark);
+  background:#f3f9f2;
+  font-size:12px;
+  padding:6px 12px;
+}
+.add-row-btn:hover{background:#e7f3e5;border-color:var(--green);}
+
+/* ---------- Totals ---------- */
+.totals-grid{
+  display:grid;
+  grid-template-columns:1.15fr 1fr;
+  border-bottom:1px solid var(--line);
+}
+.words-cell{
+  padding:12px 18px;
+  font-size:12px;
+  border-right:1px solid var(--line);
+}
+.words-cell .lbl{
+  font-weight:700;
+  color:var(--navy-dark);
+  display:block;
+  margin-bottom:4px;
+  font-size:11.5px;
+}
+.words-cell .value{
+  font-weight:600;
+}
+.totals-cell{padding:0;}
+.totals-cell table{width:100%;border-collapse:collapse;font-size:12.5px;}
+.totals-cell td{padding:8px 16px;}
+.totals-cell tr:not(:last-child) td{border-bottom:1px solid var(--line-soft);}
+.totals-cell tr td:first-child{color:var(--muted);}
+.totals-cell tr td:last-child{text-align:right;font-weight:600;}
+.totals-cell tr.grand td{
+  font-weight:800;
+  font-size:14.5px;
+  color:var(--navy-dark);
+  background:#f2f6f1;
+}
+
+.bottom-grid{
+  display:grid;
+  grid-template-columns:1.15fr 1fr;
+}
+.bottom-cell{
+  padding:12px 18px;
+  font-size:11px;
+  line-height:1.6;
+}
+.bottom-cell + .bottom-cell{border-left:1px solid var(--line);}
+.bottom-cell .lbl{
+  font-weight:700;
+  color:var(--navy-dark);
+  display:block;
+  margin-bottom:5px;
+  font-size:11.5px;
+}
+.bottom-cell ol{margin:2px 0 0 16px;padding:0;}
+.bottom-cell ol li{margin-bottom:2px;}
+
+.sign-block{
+  border-top:1px solid var(--line);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:70px;
+}
+.sign-block .left{
+  padding:10px 18px;
+  font-size:11px;
+  color:var(--muted);
+  display:flex;
+  align-items:flex-end;
+}
+.sign-block .right{
+  padding:10px 18px;
+  border-left:1px solid var(--line);
+  font-size:12px;
+  text-align:right;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.sign-block .right b{color:var(--navy-dark);}
+
+select.tax-mode, input.tax-rate-input, input.inv-input{
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:3px 5px;
+  font:inherit;
+  background:#fffdf6;
+}
+select.tax-mode:focus, input.tax-rate-input:focus, input.inv-input:focus{
+  outline:none;border-color:var(--green);background:#fff;
+}
+input.tax-rate-input{width:46px;text-align:center;}
+
+.hint{
+  font-size:11px;
+  color:var(--muted);
+  margin:10px 2px 0;
+}
+
+/* Hide CGST/SGST or IGST columns based on mode */
+table.mode-igst .col-cgst,
+table.mode-igst .col-sgst{display:none;}
+table.mode-cgst .col-igst{display:none;}
+.totals-cell .row-igst, .totals-cell .row-cgst{display:none;}
+.totals-cell.mode-igst .row-igst{display:table-row;}
+.totals-cell.mode-cgst .row-cgst{display:table-row;}
+
+@media screen and (max-width: 720px){
+  .meta-grid, .totals-grid, .bottom-grid, .sign-block{grid-template-columns:1fr;}
+  .meta-cell + .meta-cell, .words-cell, .bottom-cell + .bottom-cell, .sign-block .right{
+    border-left:none;border-top:1px solid var(--line);
+  }
+  table.items{font-size:10px;}
+}
+
+/* =========================================================
+   PRINT / SAVE-AS-PDF  — this is the section that makes the
+   downloaded PDF match the original invoice format exactly.
+   ========================================================= */
+@media print{
+  @page{
+    size:A4;
+    margin:6mm;
+  }
+  html,body{
+    background:#fff !important;
+    margin:0;
+    padding:0;
+    width:100%;
+    font-size:11px;
+  }
+  /* Force navy bars / shaded rows to actually print their color
+     (browsers skip backgrounds by default unless told otherwise) */
+  *{
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+    color-adjust:exact !important;
+  }
+  .no-print{display:none !important;}
+  .app-shell{max-width:100%;margin:0;padding:0;}
+  .invoice-paper{
+    box-shadow:none !important;
+    border:1px solid #999 !important;
+    width:100%;
+  }
+
+  /* Replace live form controls with plain printed text so the
+     PDF shows clean values instead of dropdown/input boxes */
+  select.field,
+  input.qty-input,
+  .field:not(textarea){
+    border:none !important;
+    background:transparent !important;
+  }
+  select.field{display:none !important;}
+  .print-only-text{display:inline !important;}
+  input.qty-input{
+    display:none !important;
+  }
+  .qty-print{display:inline !important;}
+
+  input, textarea, select{
+    border:none !important;
+    background:transparent !important;
+    -webkit-appearance:none !important;
+    appearance:none !important;
+    background-image:none !important;
+    padding-right:0 !important;
+  }
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button{
+    -webkit-appearance:none;
+    margin:0;
+  }
+  input[type=date]::-webkit-calendar-picker-indicator{display:none;}
+
+  .row-del{display:none !important;}
+  .col-action{display:none !important;}
+
+  table.items{font-size:9.5px;}
+  table.items thead th{padding:4px 4px;}
+  table.items tbody td{padding:2.5px 4px;}
+  table.items thead{display:table-header-group;}
+  table.items tbody tr{page-break-inside:avoid;}
+  .seller-block, .tax-invoice-bar, .meta-grid, .totals-grid, .bottom-grid, .sign-block{
+    page-break-inside:avoid;
+  }
+
+  /* Compact vertical rhythm so the whole invoice fits one A4 page */
+  .seller-block{padding:4px 18px 6px;}
+  .seller-block img.logo{height:38px;margin-bottom:1px;}
+  .seller-block h2{font-size:19px;}
+  .seller-block .addr{font-size:9.5px;margin-top:3px;line-height:1.35;}
+  .tax-invoice-bar{padding:3px 0;font-size:11px;}
+  .meta-cell{padding:6px 14px;font-size:10px;line-height:1.35;}
+  .meta-label{font-size:10px;margin-bottom:2px;}
+  .words-cell{padding:6px 14px;font-size:10px;}
+  .words-cell .lbl{font-size:10px;margin-bottom:2px;}
+  .totals-cell table{font-size:10.5px;}
+  .totals-cell td{padding:4px 14px;}
+  .totals-cell tr.grand td{font-size:12px;}
+  .bottom-cell{padding:6px 14px;font-size:9px;line-height:1.35;}
+  .bottom-cell .lbl{font-size:10px;margin-bottom:2px;}
+  .bottom-cell ol{margin:1px 0 0 14px;}
+  .bottom-cell ol li{margin-bottom:1px;}
+  .sign-block{min-height:40px;}
+  .sign-block .left, .sign-block .right{padding:5px 14px;font-size:9.5px;}
+  textarea.field{line-height:1.3;}
+}
