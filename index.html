@@ -48,21 +48,21 @@
         <input class="field wide buyer-name" id="buyerName" type="text" value="BASANT MEDICAL STORE" />
         <textarea class="field" id="buyerAddress" rows="2">MAIN MARKET SAKEET, ETAH, U.P.</textarea>
         <div>
-          <b>DL No:</b> <input class="field" id="buyerDL" style="width:200px" type="text" value="20B-51N/2011, 21R-52N/2011" />
+          <b>DL No:</b> <input class="field w-xl" id="buyerDL" type="text" value="20B-51N/2011, 21R-52N/2011" />
         </div>
         <div>
-          <b>PAN:</b> <input class="field" id="buyerPAN" style="width:110px" type="text" value="EVXPK2004J" />
+          <b>PAN:</b> <input class="field w-md" id="buyerPAN" type="text" value="EVXPK2004J" />
         </div>
         <div>
-          <b>State:</b> <input class="field" id="buyerState" style="width:110px" type="text" value="Uttar Pradesh" />
-          (Code: <input class="field" id="buyerStateCode" style="width:26px" type="text" value="09" />)
+          <b>State:</b> <input class="field w-md" id="buyerState" type="text" value="Uttar Pradesh" />
+          (Code: <input class="field w-xs" id="buyerStateCode" type="text" value="09" />)
         </div>
       </div>
       <div class="meta-cell">
         <span class="meta-label">INVOICE DETAILS:</span>
         <div><b>Invoice No:</b> <input class="field inv-input" id="invoiceNo" type="text" value="AP/26-27/001" /></div>
         <div><b>Date:</b> <input class="field inv-input" id="invoiceDate" type="date" /></div>
-        <div><b>Place of Supply:</b> <input class="field" id="placeOfSupply" style="width:140px" type="text" value="Uttar Pradesh" /> (<input class="field" id="placeOfSupplyCode" style="width:26px" type="text" value="09" />)</div>
+        <div><b>Place of Supply:</b> <input class="field w-lg" id="placeOfSupply" type="text" value="Uttar Pradesh" /> (<input class="field w-xs" id="placeOfSupplyCode" type="text" value="09" />)</div>
         <div>
           <b>Supply Type:</b>
           <select class="tax-mode" id="supplyType">
@@ -76,6 +76,7 @@
       </div>
     </div>
 
+    <div class="table-scroll">
     <table class="items mode-igst" id="itemsTable">
       <thead>
         <tr>
@@ -97,6 +98,7 @@
       <tbody id="itemsBody">
       </tbody>
     </table>
+    </div>
     <div class="add-row-bar no-print">
       <button class="add-row-btn" id="btnAddRow2" type="button">+ Add new row</button>
     </div>
